@@ -49,7 +49,7 @@ class Program
             new Employee { FirstName = "bhayo" }
 
         };
-        AddBatch(employeeRepository, employees);
+        employeeRepository.AddBatch( employees);
        /* Employee meet = new Employee { FirstName = "Meet" };
         employeeRepository.Add(meet);
         employeeRepository.Add(new Employee { FirstName = "Mitesh" });
@@ -65,7 +65,7 @@ class Program
             new Organization{Name="Tata"},
             new Organization{Name="Birla"}
         };
-        AddBatch(organizationRepository, organizations);
+        organizationRepository.AddBatch(organizations);
         /*Organization organization = new Organization { Name = "Kanet" };
        organizationRepository.Add(organization);
         organizationRepository.Add(new Organization { Name = "Jay" });
@@ -75,6 +75,8 @@ class Program
        // organizationRepository.Save();
     }
 
+    /*
+    //moved this method to RepositoryExtension.cs as Extension method
     private static void AddBatch<T>(IWriteRepository<T> repository, T[] items)
     {
         foreach (var item in items)
@@ -82,5 +84,5 @@ class Program
             repository.Add(item);
             repository.Save();
         }
-    }
+    }*/
 }
