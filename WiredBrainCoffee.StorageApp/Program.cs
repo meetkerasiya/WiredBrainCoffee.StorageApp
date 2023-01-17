@@ -42,21 +42,45 @@ class Program
   
     private static void AddEmployees(IRepository<Employee> employeeRepository)
     {
-        Employee meet = new Employee { FirstName = "Meet" };
+        var employees = new[]
+        {
+            new Employee { FirstName = "Meet" },
+            new Employee { FirstName = "Mitesh" },
+            new Employee { FirstName = "bhayo" }
+
+        };
+        AddBatch(employeeRepository, employees);
+       /* Employee meet = new Employee { FirstName = "Meet" };
         employeeRepository.Add(meet);
         employeeRepository.Add(new Employee { FirstName = "Mitesh" });
         employeeRepository.Add(new Employee { FirstName = "bhayo" });
         //employeeRepository.Remove(meet);
-        employeeRepository.Save();
+        employeeRepository.Save();*/
         
     }
     private static void AddOrganization(IRepository<Organization> organizationRepository)
     {
-        Organization organization = new Organization { Name = "Kanet" };
-        organizationRepository.Add(organization);
+        var organizations = new[]
+        {
+            new Organization{Name="Tata"},
+            new Organization{Name="Birla"}
+        };
+        AddBatch(organizationRepository, organizations);
+        /*Organization organization = new Organization { Name = "Kanet" };
+       organizationRepository.Add(organization);
         organizationRepository.Add(new Organization { Name = "Jay" });
-        organizationRepository.Add(new Organization { Name = "Krupal" });
-        // organizationRepository.Remove(organization);
-        organizationRepository.Save();
+        organizationRepository.Add(new Organization { Name = "Krupal" });*/
+
+        //organizationRepository.Remove(organization);
+       // organizationRepository.Save();
+    }
+
+    private static void AddBatch<T>(IWriteRepository<T> repository, T[] items)
+    {
+        foreach (var item in items)
+        {
+            repository.Add(item);
+            repository.Save();
+        }
     }
 }
